@@ -1,0 +1,34 @@
+// Programa que recibe el ángulo deseado(Vía Monitor Serial) y envié a un servomotor la orden correspondiente.
+
+int servo=6;
+float pausa;
+int x = 0;
+void setup()
+
+{
+	pinMode(servo,OUTPUT);
+	Serial.begin(9600);
+}
+
+// Mediante pulsos eléctricos elijo un ángulo determinado para que el servo tome ese valor.
+
+void giro(int x) {
+	for (int hz=1; hz<=50; hz++){
+		pausa=(x*1856.0/180.0)+544;
+		digitalWrite(servo,HIGH);
+		delayMicroseconds(pausa);
+		digitalWrite(servo,LOW);
+		delayMicroseconds(2000-pausa);
+	}
+} 
+
+void loop()
+{       
+	if(Serial.available() != 0){
+		delay(5);
+		x = Serial.parseInt();
+		Serial.println(x);
+	}
+	giro(x);
+	delay(100);
+}
