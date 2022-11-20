@@ -1,3 +1,3 @@
 # Arduino-Projects
 
-**Códigos Arduino que utilicé para aprender y entregar proyectos finales.**
+**Arduino codes that I used to learn and deliver final projects.**
